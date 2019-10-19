@@ -1,0 +1,70 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta charset="UTF-8">
+<title>Locadora de Veículos</title>
+</head>
+
+<body>
+	<h1>Novo Veículo</h1>
+	<form th:action="@{/rota-veiculo-form}" method="post">
+		<p>
+			Tipo de Veículo: <select name="tipoVeiculo">
+				<option th:each="tipo : ${tiposVeiculos}" th:value="${tipo}"
+					th:text="${tipo}" />
+			</select>
+		</p>
+		<p>
+			Placa: <input type="text" name="placa" />
+		</p>
+		<p>
+			Marca: <input type="text" name="marca" />
+		</p>
+		<p>
+			Modelo: <input type="text" name="modelo" />
+		</p>
+		<p>
+			Km: <input type="number" name="quilometragem" />
+		</p>
+		<p>
+			Tipo de Combustível: <select name="tipoCombustivel">
+				<option th:each="tipo : ${tiposCombustivel}" th:value="${tipo}"
+					th:text="${tipo}" />
+			</select>
+		</p>
+		<p>
+			Tipo de Caminhão: <select name="tipoCaminhao">
+				<option th:each="tipo : ${tiposCaminhao}" th:value="${tipo}"
+					th:text="${tipo}" />
+			</select>
+		</p>
+		<p>
+			Câmbio: <select name="cambio">
+				<option th:each="cambio : ${tiposCambio}" th:value="${cambio}"
+					th:text="${cambio}" />
+			</select>
+		</p>
+		<p>
+			Tipo de Carro: <select name="tipoCarro">
+				<option th:each="tipo : ${tiposCarro}" th:value="${tipo}"
+					th:text="${tipo}" />
+			</select>
+		</p>
+		<p>
+			Número de Portas: <select name="numeroPortas">
+				<option th:each="numero : ${numerosPortas}" th:value="${numero}"
+					th:text="${numero}" />
+			</select>
+		</p>
+		<p>
+			Cilindrada: <select name="cilindrada">
+				<option th:each="cilindrada : ${numerosCilindrada}"
+					th:value="${cilindrada}" th:text="${cilindrada}" />
+			</select>
+		</p>
+		<p>
+			<input type="submit" value="Adicionar" /><input type="reset"
+				value="Limpar" />
+		</p>
+	</form>
+</body>

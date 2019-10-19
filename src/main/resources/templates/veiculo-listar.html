@@ -1,0 +1,17 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta charset="UTF-8">
+<title>Locadora de Veículos</title>
+</head>
+
+<body>
+	<a href="/rota-cadastrar-veiculo">Novo</a>
+	<a href="/rota-veiculo-voltar-index">Voltar</a>
+
+	<h1>Lista de Veículos</h1>
+	
+	<ul th:each="veiculo : ${veiculos}">
+		<li><span th:text="${veiculo.placa}"></span></li>
+	</ul>
+</body>
