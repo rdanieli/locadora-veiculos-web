@@ -7,6 +7,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import br.com.tt.locadoraveiculosweb.exception.CampoObrigatorioException;
+import br.com.tt.locadoraveiculosweb.exception.RegraNegocioException;
+import br.com.tt.locadoraveiculosweb.exception.TamanhoExatoCaracteresException;
 import br.com.tt.locadoraveiculosweb.model.Veiculo;
 import br.com.tt.locadoraveiculosweb.model.enums.Cambio;
 import br.com.tt.locadoraveiculosweb.model.enums.Cilindrada;
@@ -27,12 +30,22 @@ public class VeiculoService {
 	}
 
 	public List<Veiculo> listarTodos() {
-		return veiculoRepository.listarTodos();
+		// return veiculoRepository.listarTodos();
+		return veiculoRepository.findAll();
 	}
 
-	public void incluir(Veiculo veiculo) {
+	public void incluir(Veiculo veiculo) throws RegraNegocioException {
 		// validações de entrada de dados
-		veiculoRepository.incluir(veiculo);
+		if (veiculo.getPlaca() == null || veiculo.getPlaca().isBlank()) {
+			throw new CampoObrigatorioException("Placa");
+		}
+		
+		if (veiculo.getPlaca().length() != 7) {
+			throw new TamanhoExatoCaracteresException("Placa", 7);
+		}
+		
+		// veiculoRepository.incluir(veiculo);
+		veiculoRepository.save(veiculo);
 	}
 
 	public List<TipoVeiculo> listarTiposVeiculo() {

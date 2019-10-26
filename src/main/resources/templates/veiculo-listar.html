@@ -10,8 +10,40 @@
 	<a href="/rota-veiculo-voltar-index">Voltar</a>
 
 	<h1>Lista de Veículos</h1>
-	
-	<ul th:each="veiculo : ${veiculos}">
-		<li><span th:text="${veiculo.placa}"></span></li>
-	</ul>
+
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Placa</th>
+				<th>Marca</th>
+				<th>Modelo</th>
+				<th>KM</th>
+				<th>Tipo Combustível</th>
+				<th>Tipo Caminhão</th>
+				<th>Câmbio</th>
+				<th>Tipo Carro</th>
+				<th>Nº Portas</th>
+				<th>Cilindrada</th>
+				<th>Tipo Veículo</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:if="${veiculos.empty}">
+				<td colspan="11">Nenhum veículo encontrado.</td>
+			</tr>
+			<tr th:each="veiculo : ${veiculos}">
+				<td><span th:text="${veiculo.placa}"> Placa </span></td>
+				<td><span th:text="${veiculo.marca}"> Marca </span></td>
+				<td><span th:text="${veiculo.modelo}"> Modelo </span></td>
+				<td><span th:text="${veiculo.quilometragem}"> KM </span></td>
+				<td><span th:text="${veiculo.tipoCombustivel}"> Tipo Combustível</span></td>
+				<td><span th:text="${veiculo.tipoCaminhao}"> Tipo Caminhao </span></td>
+				<td><span th:text="${veiculo.cambio}"> Cambio </span></td>
+				<td><span th:text="${veiculo.tipoCarro}"> Tipo Carro </span></td>
+				<td><span th:text="${veiculo.numeroPortas}"> Nº Portas </span></td>
+				<td><span th:text="${veiculo.cilindrada}"> Cilindrada </span></td>
+				<td><span th:text="${veiculo.tipoVeiculo}"> Tipo Veículo </span></td>
+			</tr>
+		</tbody>
+	</table>
 </body>

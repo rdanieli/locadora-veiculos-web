@@ -14,7 +14,7 @@ public class VeiculoDTO {
 	private String placa;
 	private String marca;
 	private String modelo;
-	private float quilometragem;
+	private Double quilometragem;
 	private TipoCombustivel tipoCombustivel;
 	private TipoCaminhao tipoCaminhao;
 	private Cambio cambio;
@@ -54,11 +54,11 @@ public class VeiculoDTO {
 		this.modelo = modelo;
 	}
 
-	public float getQuilometragem() {
+	public Double getQuilometragem() {
 		return quilometragem;
 	}
 
-	public void setQuilometragem(float quilometragem) {
+	public void setQuilometragem(Double quilometragem) {
 		this.quilometragem = quilometragem;
 	}
 
