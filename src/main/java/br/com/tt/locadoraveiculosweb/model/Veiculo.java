@@ -67,4 +67,12 @@ public abstract class Veiculo {
 	public TipoCombustivel getTipoCombustivel() {
 		return tipoCombustivel;
 	}
+	
+	public void setId(Long id) { 
+		this.id = id;
+	}
+	
+	public Long getId() {
+		return this.id;
+	}
 }

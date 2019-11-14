@@ -9,5 +9,4 @@ class LocadoraVeiculosWebApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

@@ -4,10 +4,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Service;
 
 import br.com.tt.locadoraveiculosweb.exception.CampoObrigatorioException;
+import br.com.tt.locadoraveiculosweb.exception.DadoInvalidoException;
 import br.com.tt.locadoraveiculosweb.exception.RegraNegocioException;
 import br.com.tt.locadoraveiculosweb.exception.TamanhoExatoCaracteresException;
 import br.com.tt.locadoraveiculosweb.model.Veiculo;
@@ -29,6 +33,17 @@ public class VeiculoService {
 		this.veiculoRepository = veiculoRepository;
 	}
 
+	public Veiculo findById(Long id) {
+		Optional<Veiculo> veiculoOptional = this.veiculoRepository.findById(id);
+		
+		if(veiculoOptional.isPresent()) {
+			return veiculoOptional.get();
+		} else {
+			return null;
+		}
+	}
+	
+	
 	public List<Veiculo> listarTodos() {
 		// return veiculoRepository.listarTodos();
 		return veiculoRepository.findAll();
@@ -42,6 +57,23 @@ public class VeiculoService {
 		
 		if (veiculo.getPlaca().length() != 7) {
 			throw new TamanhoExatoCaracteresException("Placa", 7);
+		}
+		
+		Pattern padraoPlaca = 
+				Pattern.compile("[A-Z]{3}[0-9]{4}|[A-Z]{3}[0-9]{1}[A-Z]{1}[0-9]{2}");
+		Matcher matcherPlaca = padraoPlaca
+				.matcher(veiculo.getPlaca());
+		
+		if (!matcherPlaca.matches()) {
+			throw new DadoInvalidoException("Placa inválida.");
+		}
+		
+		if (veiculo.getQuilometragem() == null) {
+			throw new CampoObrigatorioException("KM");
+		}
+		
+		if (veiculo.getQuilometragem().compareTo(0d) == -1) {
+			throw new DadoInvalidoException("KM deve ser maior ou igual à 0.");
 		}
 		
 		// veiculoRepository.incluir(veiculo);
